@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Skin Disease Prediction API</title>
+<link href="https://fonts.googleapis.com/css?family=Muli:400,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style-starter.css">
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color:#f3f3f3;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+form {
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #343a40;
+}
+
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    background-color: #d626c4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#predictionResults {
+    text-align: left;
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#predictionResults ul {
+    list-style: none;
+    padding: 0;
+}
+
+#predictionResults ul li {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #343a40;
+}
+
+.note {
+    font-style: italic;
+    color: #6c757d;
+}
+
+.w3l-content-6 {
+    background-color: #f8f9fa;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-top: 2px solid #ccc; 
+    border-bottom: 2px solid #ccc; 
+}
+
+.content-info-in {
+    background-color: #d0a4ff; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; 
+}
+
+.content-gd {
+    color: #343a40;
+}
+
+.content-gd h3 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.content-gd p {
+    color: #343a40;
+    line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<h1>Skin Disease Prediction API</h1>
+
+<section class="w3l-bootstrap-header">
+    <nav class="navbar navbar-expand-md navbar-light py-3">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img src="assets/images/logo50.jpg" class="img-fluid"
+                                                            width="52px">
+                DermaProj</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="skin_test.html">Skin Test</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<section class="w3l-content-6">
+    <div class="container py-lg-5">
+        <div class="content-info-in row">
+            <div class="content-gd col-lg-12">
+                <h3>Our Skin Disease Prediction API Can Detect:</h3>
+                <p>ACNE, ALOPECIA AND HAIR RELATED, PIGMENTATION DISORDER, FUNGAL INFECTIONS, STDs only.</p>
+                <p>It can be scaled for more with an enterprise subscription.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="w3l-content-6">
+    <div class="container py-lg-5">
+        <div class="content-info-in row">
+            <div class="content-gd col-lg-6">
+                <h3>Who Can Use Skin Disease Prediction API?</h3>
+                <p>The Skin Disease Prediction API is designed for dermatologists, healthcare professionals, and individuals interested in skin health. It can also be utilized by developers and researchers working on projects related to dermatology and artificial intelligence.</p>
+            </div>
+            <div class="content-gd col-lg-6">
+                <h3>Problem It Solves</h3>
+                <p>The Skin Disease Prediction API solves the problem of timely and accurate diagnosis of skin conditions. It provides instant predictions based on uploaded images or image URLs, enabling early detection and intervention for various skin diseases from the comfort of your home itself.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<form id="urlForm">
+    <label for="imageUrl">Image URL:</label>
+    <input type="text" id="imageUrl" name="imageUrl" placeholder="Enter image URL" required>
+    <button type="submit">Submit from URL</button>
+</form>
+
+<form id="fileForm" enctype="multipart/form-data">
+    <label for="imageFile">Upload Image:</label>
+    <input type="file" id="imageFile" name="imageFile" accept="image/*" required>
+    <button type="submit">Submit Image File</button>
+</form>
+
+<div id="predictionResults"></div>
+
+<div class="note">Note: You can either submit an image URL or upload an image file from your device.</div>
+
+
+<section class="w3l-DermaProj-footer">
+    <div class="footer-main py-5">
+      <div class="footer-top-28 py-lg-4">
+        <div class="container">
+          <div class="row footer-row">
+            <div class="footer-list-28 col-lg-2 col-md-6 mb-md-4 mb-3">
+              <h6 class="footer-title-28">Quick Links</h6>
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="skin_test.html">Skin Test</a></li>
+              </ul>
+            </div>
+            <div class="footer-list-28 col-lg-3 col-md-6 mb-md-4 mb-3">
+              <h6 class="footer-title-28">Address</h6>
+              <ul class="address">
+                <li><p>National Institute of Technology, Rourkela SD F block </p></li>
+                <li><p>+91 8870214590</p></li>
+                <li><a href="mailto:gokul@mail.com">gokul@mail.com</a></li>
+              </ul>
+            </div>
+            <div class="footer-list-28 col-lg-4 col-md-6 mb-md-4 mb-3">
+              <h6 class="footer-title-28">Our Services</h6>
+              <ul>
+                <li><a href="services.html">Mohr Surgery</a></li> 
+                <li><a href="services.html">Dermatopathology</a></li> 
+                <li><a href="services.html">Cosmetic</a></li> 
+                <li><a href="services.html">Pediatric Dermatology</a></li> 
+              </ul>
+            </div>
+            <div class="footer-list-28 col-lg-3 col-md-6">
+              <h6 class="footer-title-28">Opening Hours</h6>
+              <ul>
+                <li>Mon - Sat: 9:00am - 9:00pm</li>
+                <li>Sunday: Closed</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="midd-footer-28 align-center py-lg-4 py-3 mt-md-5 mt-3">
+        <div class="container">
+          <p class="copy-footer-28 text-center"> &copy; 2024 DermaProj. All Rights Reserved by Gokul Prasanna </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+document.getElementById("urlForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const url = document.getElementById("imageUrl").value;
+    predictFromUrl(url);
+});
+
+document.getElementById("fileForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const file = document.getElementById("imageFile").files[0];
+    predictFromFile(file);
+});
+
+function predictFromUrl(url) {
+    const apiUrl = "https://hlthbotftr-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/9f18ca81-8632-433e-b649-20433ead560c/classify/iterations/Skin%20Disease%20Detection/url";
+    const apiKey = "11c702317b1c4c79b8aefe24e2797107";
+
+    fetch(apiUrl, {
+        method: "POST",
+        headers: {
+            "Prediction-Key": apiKey,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ Url: url })
+    })
+    .then(response => response.json())
+    .then(data => {
+        displayResults(data);
+    })
+    .catch(error => console.error("Error:", error));
+}
+
+function predictFromFile(file) {
+    const apiUrl = "https://hlthbotftr-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/9f18ca81-8632-433e-b649-20433ead560c/classify/iterations/Skin%20Disease%20Detection/image";
+    const apiKey = "11c702317b1c4c79b8aefe24e2797107";
+
+    const formData = new FormData();
+    formData.append("imageFile", file);
+
+    fetch(apiUrl, {
+        method: "POST",
+        headers: {
+            "Prediction-Key": apiKey
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        displayResults(data);
+    })
+    .catch(error => console.error("Error:", error));
+}
+
+function displayResults(data) {
+    const resultsDiv = document.getElementById("predictionResults");
+    resultsDiv.innerHTML = ""; 
+
+    if (data && data.predictions && data.predictions.length > 0) {
+        const predictions = data.predictions;
+        const resultList = document.createElement("ul");
+        predictions.forEach(prediction => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${prediction.tagName}: ${Math.round(prediction.probability * 100)}%`;
+            resultList.appendChild(listItem);
+        });
+        resultsDiv.appendChild(resultList);
+    } else {
+        resultsDiv.textContent = "No predictions found.";
+    }
+}
+
+</script>
+
+</body>
+</html>
